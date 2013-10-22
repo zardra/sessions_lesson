@@ -1,0 +1,28 @@
+{% extends 'master.html' %}
+
+{% block body %}
+<h3>Wall Posts:</h3>
+    <!-- <ul id="wall_posts"> -->
+        {% for item in posts%}
+        <div class="posts">
+            {{item[0]}}<br />
+            Author: {{item[1]}}<br />
+            Created On: {{item[2]}}
+            <br />
+            </div>
+            <br>
+        {% else %}
+        NO POSTS
+        {% endfor %}
+        {% if session['user_id'] %}
+                <form class="post_to_wall" action="{{url_for("post_to_wall", username=username) }}" method="POST">
+                <h3>New Post:</h3>
+                <textarea class="form-control" name="post" rows="10" cols="50">Write Something Here</textarea>
+                <input type="submit" class="btn btn-lg btn-primary btn-block" value="Submit">
+            </form>
+        {% endif %}
+
+
+    <!-- </ul> -->
+
+{% endblock %}
